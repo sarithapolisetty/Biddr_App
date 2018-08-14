@@ -9,8 +9,9 @@ const Session = {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(params)
-        }).then(res => res.json());
+        })
     },
+
     destroy() {
         return fetch(`${BASE_URL}/session`, {
             method: "DELETE",

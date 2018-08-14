@@ -4,13 +4,12 @@ Rails.application.routes.draw do
     
     namespace :v1 do
     
-      resources :auctions
-
-      resources :bids, only: [ :create]
-       
+      resources :auctions do 
+        resources :bids, only: [:create ]
+      end
       resource :session, only: [:create, :destroy]
        
-      resources :users, only: [] do
+      resources :users, only: [:create] do
        
         get :current, on: :collection
       end

@@ -2,7 +2,10 @@ class Api::V1::BidsController < Api::ApplicationController
     before_action :authenticate_user!
 
     def create
+      
         bid = Bid.new bid_params
+        
+    
         bid.user = current_user
 
         if bid.save
@@ -14,7 +17,7 @@ class Api::V1::BidsController < Api::ApplicationController
 
     private
     def bid
-    @bid ||= Bid.find params[:id]
+     @bid ||= Bid.find params[:id]
     end
 
     def bid_params

@@ -4,6 +4,18 @@ const User = {
     current() {
         return fetch(`${BASE_URL}/users/current`, {
             credentials: "include"
+        })
+       
+    },
+
+    createUser(params) {
+        return fetch(`${BASE_URL}/users`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(params)
         }).then(res => res.json());
     }
 };

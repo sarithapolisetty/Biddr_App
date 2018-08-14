@@ -3,11 +3,13 @@ class Api::V1::AuctionsController < Api::ApplicationController
 
     def index
         auctions = Auction.order(created_at: :desc)
-        render json: auctions
+        render json: auctions,
+        each_serializer: AuctionCollectionSerializer
     end
 
     def show
-        render json: auction
+        render json: auction,
+        include: [:seller, {bids: [:bidder]}]
     end
 
     def create
@@ -29,7 +31,7 @@ class Api::V1::AuctionsController < Api::ApplicationController
 
     private
     def auction
-    @auction ||= Auction.find params[:id]
+     @auction ||= Auction.find params[:id]
     end
 
     def auction_params

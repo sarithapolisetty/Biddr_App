@@ -17,6 +17,7 @@ super_user = User.create(
   last_name: "Snow",
   email: "js@winterfell.gov",
   password: PASSWORD
+  
 )
 
 10.times do
@@ -35,17 +36,17 @@ puts Cowsay.say "Created #{users.count} users", :ghostbusters
 
 100.times do
     a = Auction.create(
-      title: Faker::Hacker.say_something_smart,
-      details: Faker::HarryPotter.quote,
-      ends_on: Faker::HarryPotter.quote,
-      reserve_price: Faker::Matz.quote,
+      title: Faker::Commerce.product_name,
+        details: Faker::Community.quotes,
+        ends_on: Faker::Date.forward(21),
+        reserve_price: rand(50..100),
       user: users.sample
     )
   
     if a.valid?
       rand(0..10).times do
         Bid.create(
-          price: Faker::Matz.quote,
+          price: rand(49),
           auction: a,
           user: users.sample
         )
